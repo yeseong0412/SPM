@@ -3,6 +3,10 @@ package com.example.spm;
 import com.example.spm.constant.ItemSellStatus;
 import com.example.spm.entity.Item;
 import com.example.spm.repository.ItemRepository;
+import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @SpringBootTest
 @TestPropertySource(locations =  "classpath:application-test.properties")

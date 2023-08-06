@@ -10,7 +10,7 @@ import java.util.List;
 public interface ItemRepository extends JpaRepository<Item, Long> {
     List<Item> findByItemNm(String itemNm);
 
-    @Query(value = "select i from Item i where i.itemDetail" + " like %:itemDatail% order by i.price desc", nativeQuery = true)
+    @Query(value = "select i from Item i where i.itemDetail" + " like %:itemDetail% order by i.price desc", nativeQuery = true)
     List<Item> findByItemDetail(@Param("itemDetail") String itemDetail);
 
 
