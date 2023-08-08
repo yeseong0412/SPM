@@ -7,13 +7,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.parameters.P;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class MemberService {
+public class MemberService implements UserDetailsService {
 
     private final MemberRepository memberRepository;
 
@@ -37,7 +38,7 @@ public class MemberService {
         return User.builder()
                 .username(member.getEmail())
                 .password(member.getPassword())
-                .roles(member.getRole().toString())
+                .roles("ROLE_" + member.getRole().toString())
                 .build();
     }
 }
