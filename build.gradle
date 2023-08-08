@@ -37,6 +37,8 @@ dependencies {
     implementation 'com.querydsl:querydsl-jpa'
     // https://mvnrepository.com/artifact/nz.net.ultraq.thymeleaf/thymeleaf-layout-dialect
     implementation group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '2.5.3'
+    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-test
+    testImplementation group: 'org.springframework.security', name: 'spring-security-test', version: '6.1.0'
 
     runtimeOnly 'com.h2database:h2'
 
