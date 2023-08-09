@@ -7,6 +7,7 @@ import com.example.spm.entity.Order;
 import com.example.spm.entity.OrderItem;
 import com.example.spm.repository.ItemRepository;
 import com.example.spm.repository.MemberRepository;
+import com.example.spm.repository.OrderItemRepository;
 import com.example.spm.repository.OrderRepository;
 import com.example.spm.test.annotation.TestInit;
 import jakarta.persistence.EntityManager;
@@ -80,6 +81,10 @@ class OrderTest {
     @Autowired
     MemberRepository memberRepository;
 
+    @Autowired
+    private OrderItemRepository orderItemRepository;
+
+
     public Order createOrder(){
         Order order = new Order();
         for(int i=0; i<3; i++){
@@ -108,4 +113,31 @@ class OrderTest {
         em.flush(); // 디비에 처리
         assertEquals(Optional.empty(), orderRepository.findById(orderItem_id));
     }
+
+    @Test
+    @DisplayName("즉시 로딩 테스트")
+    public void eagerLoadingTest(){
+        Order order = this.createOrder();
+        Long orderItem_id = order.getOrderItems().get(0).getId();
+        em.flush();
+        em.clear();
+        OrderItem orderItem = orderItemRepository.findById(orderItem_id)
+                .orElseThrow(EntityNotFoundException::new);
+
+    }
+    @Test
+    @DisplayName("지연 로딩 테스트")
+    public void lazyLoadingTest(){
+        Order order = this.createOrder();
+        Long orderItemId = order.getOrderItems().get(0).getId();
+        em.flush();
+        em.clear();
+        OrderItem orderItem = orderItemRepository.findById(orderItemId)
+                .orElseThrow(EntityNotFoundException::new);
+        System.out.println("Order class : " + orderItem.getOrder().getClass());
+        System.out.println("===========================");
+        orderItem.getOrder().getOrderStatus();
+        System.out.println("===========================");
+    }
+
 }
