@@ -1,10 +1,6 @@
 package com.example.spm.dto;
 
 import com.example.spm.constant.ItemSellStatus;
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Lob;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -2,12 +2,9 @@ package com.example.spm.controller;
 
 import com.example.spm.dto.MemberFormDto;
 import com.example.spm.entity.Member;
-import com.example.spm.repository.MemberRepository;
 import com.example.spm.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
-import lombok.experimental.PackagePrivate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
