@@ -1,4 +1,4 @@
-package com.example.spm;
+package com.example.spm.test;
 
 import com.example.spm.constant.ItemSellStatus;
 import com.example.spm.entity.Item;
@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootTest
-@TestPropertySource(locations =  "classpath:application-test.properties")
+@TestPropertySource(locations = "classpath:application-test.properties")
 class ItemRepositoryTest {
 
     @Autowired

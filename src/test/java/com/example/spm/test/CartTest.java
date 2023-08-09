@@ -1,5 +1,6 @@
-package com.example.spm;
+package com.example.spm.test;
 
+import com.example.spm.test.annotation.TestInit;
 import com.example.spm.dto.MemberFormDto;
 import com.example.spm.entity.Cart;
 import com.example.spm.entity.Member;
@@ -8,19 +9,14 @@ import com.example.spm.repository.MemberRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.PersistenceContext;
-import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.test.context.TestPropertySource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest
-@Transactional
-@TestPropertySource(locations = "classpath:application-test.properties")
+@TestInit
 public class CartTest {
 
     @Autowired
