@@ -10,6 +10,8 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.rmi.server.ExportException;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -29,6 +31,15 @@ public class ItemControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk());
     }
+    @Test
+    @DisplayName("상품 등록 페이지 일반 회원 접근 테스트")
+    @WithMockUser()
+    public void itemFormNotAdminTest() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/admin/item/new"))
+                .andDo(print())
+                .andExpect(status().isForbidden());
+    }
+
 
 
 }
