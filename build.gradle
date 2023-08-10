@@ -40,6 +40,8 @@ dependencies {
     testImplementation group: 'org.springframework.security', name: 'spring-security-test', version: '6.1.0'
     // https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity5
     implementation group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity5', version: '3.1.0.RELEASE'
+    // https://mvnrepository.com/artifact/org.modelmapper/modelmapper
+    implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.1.1'
 
 
     runtimeOnly 'com.h2database:h2'
