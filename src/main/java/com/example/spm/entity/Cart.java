@@ -8,7 +8,6 @@ import lombok.ToString;
 @Entity
 @Table(name = "Cart")
 @Getter
-@Setter
 @ToString
 public class Cart {
     @Id
