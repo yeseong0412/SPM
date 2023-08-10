@@ -3,10 +3,11 @@ package com.example.spm.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "item_img")
-@Getter
+@Getter @Setter
 public class ItemImg extends BaseEntity {
 
     @Id
