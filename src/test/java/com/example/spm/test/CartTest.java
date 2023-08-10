@@ -48,8 +48,8 @@ public class CartTest {
         this.memberRepository.save(member);
 
         Cart cart = new Cart();
-        cart.setMember (member);
-        cartRepository.save (cart);
+        cart.setMember(member);
+        cartRepository.save(cart);
 
         em.flush();
         em.clear();
@@ -58,6 +58,5 @@ public class CartTest {
                 .orElseThrow(EntityNotFoundException::new);
         assertEquals(savedCart.getMember().getId(), member.getId());
     }
-
 
 }

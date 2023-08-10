@@ -2,12 +2,13 @@ package com.example.spm.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "order_item")
-@Getter
+@Getter @Setter
 public class OrderItem {
 
     @Id
