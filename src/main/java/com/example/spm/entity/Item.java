@@ -1,6 +1,7 @@
 package com.example.spm.entity;
 
 import com.example.spm.constant.ItemSellStatus;
+import com.example.spm.dto.ItemFormDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,5 +37,11 @@ public class Item {
     private LocalDateTime regTime; // 상품 등록 시간
     private LocalDateTime updateTime; // 상품 수정 시간
 
-
+    public void updateItem(ItemFormDto itemFormDto){
+        this.itemNm = itemFormDto.getItemNm() ;
+        this.price = itemFormDto.getPrice();
+        this.stockNumber = itemFormDto.getStockNumber () ;
+        this.itemDetail = itemFormDto.getItemDetail();
+        this.itemSellStatus = itemFormDto.getItemSellStatus();
+    }
 }
