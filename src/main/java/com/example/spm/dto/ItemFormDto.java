@@ -2,7 +2,6 @@ package com.example.spm.dto;
 
 import com.example.spm.constant.ItemSellStatus;
 import com.example.spm.entity.Item;
-import com.example.spm.entity.ItemImg;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -25,6 +24,7 @@ public class ItemFormDto {
     private Integer stockNumber;
     private ItemSellStatus itemSellStatus;
 
+    // 상품 수정 시 사용되는 멤버변수들
     private List<ItemImgDto> itemImgDtoList = new ArrayList<>();
     private List<Long> itemImgIds = new ArrayList<>();
 

@@ -5,12 +5,11 @@ import com.example.spm.dto.ItemImgDto;
 import com.example.spm.entity.Item;
 import com.example.spm.entity.ItemImg;
 import com.example.spm.repository.ItemImgRepository;
-import jakarta.persistence.EntityNotFoundException;
-import org.springframework.data.domain.Page;
-import org.springframework.transaction.annotation.Transactional;
 import com.example.spm.repository.ItemRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
@@ -67,7 +66,21 @@ public class ItemService {
 
 
     }
+    public Long updateItem(ItemFormDto itemFormDto , List<MultipartFile> itemImgFileList) throws Exception {
 
+        // 상품 수정
+        Item item = itemRepository.findById(itemFormDto.getId())
+                .orElseThrow(EntityNotFoundException :: new);
+        item.updateItem(itemFormDto);
+
+        // 상품 이미지 수정
+        List<Long> itemImgIds = itemFormDto.getItemImgIds();
+        for (int i = 0; i < itemImgFileList.size(); i++) {
+            itemImgService.updateItemImg(itemImgIds.get(i), itemImgFileList.get(i));
+        }
+
+        return item.getId();
+    }
 
 
 }
