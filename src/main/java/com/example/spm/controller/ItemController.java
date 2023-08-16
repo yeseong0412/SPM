@@ -50,7 +50,7 @@ public class ItemController {
         return "redirect:/";
     }
     // 상품 수정
-    @PostMapping(value = "/admin/item/{itemId}")
+    @GetMapping(value = "/admin/item/{itemId}")
     public String itemDtl(@PathVariable("itemId") Long itemId, Model model){
         try{
             ItemFormDto itemFormDto = itemService.getItemDtl(itemId);
