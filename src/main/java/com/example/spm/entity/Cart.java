@@ -6,7 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "Cart")
+@Table(name = "cart")
 @Getter @Setter
 @ToString
 public class Cart {
