@@ -2,12 +2,16 @@ package com.example.spm.service;
 
 import com.example.spm.dto.ItemFormDto;
 import com.example.spm.dto.ItemImgDto;
+import com.example.spm.dto.ItemSearchDto;
+import com.example.spm.dto.MainItemDto;
 import com.example.spm.entity.Item;
 import com.example.spm.entity.ItemImg;
 import com.example.spm.repository.ItemImgRepository;
 import com.example.spm.repository.ItemRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -80,6 +84,11 @@ public class ItemService {
         }
 
         return item.getId();
+    }
+    // 메인 페이지 상품 목록 조회
+    @Transactional(readOnly = true)
+    public Page<MainItemDto> getMainItemPage(ItemSearchDto itemSearchDto, Pageable pageable){
+        return itemRepository.getMainItemPage(itemSearchDto, pageable);
     }
 
 
