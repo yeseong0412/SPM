@@ -25,7 +25,7 @@ public class SecurityConfig {
     // 참조 안에antMatchers()( 뿐만 아니라 mvcMathcers() 그리고 regexMatchers())는
     // Spring Security 6.0에서 더 이상 사용되지 않고 제거되었습니다. 따라서 Spring Boot 3 프로젝트에서는 사용할 수 없습니다.
     @Bean
-    public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+    protected SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/", "/members/**" , "/item/**", "/images/**").permitAll() //모든 사용자 인증
@@ -55,7 +55,6 @@ public class SecurityConfig {
 
 
     }
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -65,4 +64,5 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService() {
         return memberService;
     }
+
 }
