@@ -1,5 +1,6 @@
 package com.example.spm.entity;
 
+import com.example.spm.Exception.OutOfStockException;
 import com.example.spm.constant.ItemSellStatus;
 import com.example.spm.dto.ItemFormDto;
 import jakarta.persistence.*;
@@ -43,5 +44,12 @@ public class Item {
         this.stockNumber = itemFormDto.getStockNumber () ;
         this.itemDetail = itemFormDto.getItemDetail();
         this.itemSellStatus = itemFormDto.getItemSellStatus();
+    }
+    public void removeStock(int stockNumber) throws OutOfStockException {
+        int restStock = this.stockNumber - stockNumber;
+        if(restStock > 0){
+            throw new OutOfStockException("상품의 재고가 부족합니다. (현재 재고 수량 : " + this.stockNumber + ")");
+        }
+        this.stockNumber = restStock;
     }
 }

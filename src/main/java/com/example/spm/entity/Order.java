@@ -34,5 +34,9 @@ public class Order {
     private LocalDateTime regTime;
     private LocalDateTime updateTime;
 
+    public void addOrderItem(OrderItem orderItem){
+        orderItems.add(orderItem);
+        orderItem.setOrder(this);
+    }
 
 }
