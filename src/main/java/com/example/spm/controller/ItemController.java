@@ -65,7 +65,7 @@ public class ItemController {
     // 상품 수정
     @PostMapping(value = "/admin/item/{itemId}")
     public String itemUpdate(@Valid ItemFormDto itemFormDto, BindingResult bindingResult, Model model,
-                             @RequestParam(name = "itemImgFile") List<MultipartFile> itemImgFileList) {
+                             @RequestParam(name = "itemImgFile") List<MultipartFile> itemImgFileList, @PathVariable String itemId) {
 
         if (bindingResult.hasErrors()) {
             return "item/itemForm";
