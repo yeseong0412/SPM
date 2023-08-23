@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.lang.invoke.StringConcatException;
 import java.util.UUID;
 
 @Service
@@ -20,7 +19,7 @@ public class FileService {
 
         // 경로 + 파일명
         String fileUploadFullUrl = uploadPath + "/" + savedFileName;
-        //F1leoutoutStream객체를이용하여경로지정후파일저장
+        //File out put Stream 객체를 이용하여 경로 지정 후 파일 저장
         FileOutputStream fos = new FileOutputStream ((fileUploadFullUrl));
         fos.write(fileDate);
         fos.close ();
