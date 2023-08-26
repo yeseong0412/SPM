@@ -2,6 +2,7 @@ package com.example.spm.service;
 
 import com.example.spm.Exception.OutOfStockException;
 import com.example.spm.dto.OrderDto;
+import com.example.spm.dto.OrderHistDto;
 import com.example.spm.entity.Item;
 import com.example.spm.entity.Member;
 import com.example.spm.entity.Order;
@@ -10,6 +11,9 @@ import com.example.spm.repository.ItemRepository;
 import com.example.spm.repository.MemberRepository;
 import com.example.spm.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,4 +44,18 @@ public class OrderService {
 
         return order.getId();
     }
+    @Transactional(readOnly = true)
+    public Page<OrderHistDto> getOrderList(String email, Pageable pageable) {
+
+        List<Order> orders = orderRepository.findOrders(email, pageable);
+        Long totalCount = orderRepository.countOrder(email);
+
+        List<OrderHistDto> orderHistDtos = new ArrayList<>();
+
+
+
+
+        return new PageImpl<OrderHistDto>(orderHistDtos, pageable, totalCount);
+    }
+
 }
