@@ -3,10 +3,9 @@ package com.example.spm.service;
 import com.example.spm.Exception.OutOfStockException;
 import com.example.spm.dto.OrderDto;
 import com.example.spm.dto.OrderHistDto;
-import com.example.spm.entity.Item;
-import com.example.spm.entity.Member;
-import com.example.spm.entity.Order;
-import com.example.spm.entity.OrderItem;
+import com.example.spm.dto.OrderItemDto;
+import com.example.spm.entity.*;
+import com.example.spm.repository.ItemImgRepository;
 import com.example.spm.repository.ItemRepository;
 import com.example.spm.repository.MemberRepository;
 import com.example.spm.repository.OrderRepository;
@@ -26,9 +25,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderService {
 
-    private final ItemRepository itemRepository;
-    private final MemberRepository memberRepository;
-    private final OrderRepository orderRepository;
+    private final ItemRepository itemRepository;        // 상품을 불러와서 재고를 변경해야함
+    private final MemberRepository memberRepository;    // 멤버를 불러와서 연결해야함
+    private final OrderRepository orderRepository;      // 주문 객체를 저장해야함
+    private final ItemImgRepository itemImgRepository;  // 상품 대표 이미지를 출력해야함
 
     public Long order(OrderDto orderDto , String email) throws OutOfStockException {
         Item item = itemRepository.findById(orderDto.getItemId()).orElseThrow(EntityNotFoundException :: new);
@@ -53,9 +53,17 @@ public class OrderService {
 
         List<OrderHistDto> orderHistDtos = new ArrayList<>();
 
-
-
-
+        for (Order order : orders){
+            OrderHistDto orderHistDto = new OrderHistDto(order);
+            List<OrderItem> orderItems = order.getOrderItems();
+            for(OrderItem orderItem : orderItems){
+                ItemImg itemImg = itemImgRepository
+                        .findByItemIdAndRepImgYn(orderItem.getItem().getId(), "Y");
+                OrderItemDto orderItemDto = new OrderItemDto(orderItem, itemImg.getImgUrl());
+                orderHistDto.addOrderItemDto(orderItemDto);
+            }
+            orderHistDtos.add(orderHistDto);
+        }
         return new PageImpl<OrderHistDto>(orderHistDtos, pageable, totalCount);
     }
 
