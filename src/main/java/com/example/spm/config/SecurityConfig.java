@@ -33,6 +33,7 @@ public class SecurityConfig {
                         .requestMatchers("/admin/**").hasAnyRole("ADMIN") //어드민 페이지는 어드민만 인증되도룍
                         .anyRequest().authenticated()
                 )
+
                 .formLogin(formLogin -> {
                     formLogin
                             .loginPage("/member/login")
