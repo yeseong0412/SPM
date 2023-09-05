@@ -52,4 +52,7 @@ public class Item {
         }
         this.stockNumber = restStock;
     }
+    public void addStack(int stockNumber){
+        this.stockNumber += stockNumber;
+    }
 }
