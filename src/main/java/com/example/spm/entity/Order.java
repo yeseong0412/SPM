@@ -50,6 +50,7 @@ public class Order {
         return order;
     }
 
+
     public int getTotalPrice(){
         int totalPrice = 0;
 
@@ -57,6 +58,13 @@ public class Order {
             totalPrice += orderItem.getTotalPrice();
         }
         return totalPrice;
+    }
+
+    public void cancelOrder() {
+        this.orderStatus = OrderStatus.CANCEL;
+        for (OrderItem orderItem : orderItems) {
+            orderItem.cancel();
+        }
     }
 
 
